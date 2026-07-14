@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>해링턴 플레이스 오룡역 | Harrington Place Oryong Station</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; background: #0a1628; color: #fff; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --gold: #c9a96e;
+  --gold-light: #e8d5a3;
+  --gold-dark: #a07845;
+  --navy: #0a1628;
+  --navy-mid: #0f2040;
+  --navy-light: #162840;
+  --white: #ffffff;
+  --gray: #9aa5b4;
+  --light-gray: #f5f5f0;
+  --base: ;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+/* ===== HEADER / NAV ===== */
+#header {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  padding: 0 40px;
+}
+#header.scrolled {
+  background: rgba(10,22,40,0.97);
+  box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 80px; max-width: 1400px; margin: 0 auto;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px; letter-spacing: 2px; color: var(--gold);
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.logo span { font-size: 12px; color: rgba(201,169,110,0.6); letter-spacing: 3px; text-transform: uppercase; }
+
+nav { display: flex; align-items: center; gap: 0; }
+.nav-item {
+  position: relative;
+  padding: 0 20px; height: 80px;
+  display: flex; align-items: center;
+}
+.nav-item > a {
+  font-size: 15px; font-weight: 500; letter-spacing: 1px;
+  color: #fff;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+.nav-item:hover > a { color: var(--gold); }
+.nav-item::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px; background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-item:hover::after { width: 60%; }
+
+/* Dropdown */
+.dropdown {
+  position: absolute; top: 80px; left: 50%; transform: translateX(-50%);
+  background: rgba(10,22,40,0.97); border-top: 2px solid var(--gold);
+  min-width: 140px; padding: 12px 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 0.3s, visibility 0.3s;
+  backdrop-filter: blur(10px);
+}
+.nav-item:hover .dropdown { opacity: 1; visibility: visible; pointer-events: all; }
+.dropdown li a {
+  display: block; padding: 9px 20px;
+  font-size: 15px; color: #fff;
+  letter-spacing: 0.5px; white-space: nowrap;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.dropdown li a:hover { color: var(--gold); padding-left: 26px; }
+
+.header-cta {
+  display: flex; align-items: center; gap: 16px;
+}
+.tel-link {
+  font-size: 16px; font-weight: 700; color: var(--gold);
+  letter-spacing: 1px;
+}
+.cta-btn {
+  padding: 9px 20px; border: 1px solid var(--gold);
+  font-size: 14px; font-weight: 500; color: var(--gold);
+  letter-spacing: 1px; cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+.cta-btn:hover { background: var(--gold); color: var(--navy); }
+
+/* ===== HERO SECTION ===== */
+#hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: url('img/exterior.jpg') center/cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+#hero:hover .hero-bg { transform: scale(1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(10,22,40,0.08) 0%, rgba(10,22,40,0.18) 30%, rgba(10,22,40,0.55) 58%, rgba(10,22,40,0.82) 80%, rgba(10,22,40,0.88) 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 0 20px;
+  animation: fadeUp 1.2s ease forwards;
+}
+.hero-badge {
+  display: inline-block; border: 1px solid var(--gold);
+  padding: 6px 20px; font-size: 13px; letter-spacing: 4px;
+  color: var(--gold); margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.hero-title {
+  font-family: 'Black Han Sans', 'Pretendard', sans-serif;
+  font-size: clamp(30px, 4.5vw, 60px);
+  font-weight: 400; line-height: 1.25;
+  margin-bottom: 12px; color: #fff;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 4px 32px rgba(0,0,0,0.5);
+}
+.hero-title em { color: var(--gold); font-style: normal; }
+.hero-sub {
+  font-size: clamp(17px, 2vw, 21px); color: #fff;
+  letter-spacing: 2px; margin-bottom: 40px; font-weight: 300;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+}
+.hero-tags { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 48px; }
+.hero-tag {
+  padding: 8px 20px; background: rgba(10,22,40,0.55);
+  border: 1px solid rgba(201,169,110,0.75);
+  font-size: 14px; letter-spacing: 1px; color: #e8d5a3;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+}
+.hero-btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 16px 40px; background: var(--gold);
+  font-size: 16px; font-weight: 700; letter-spacing: 2px;
+  color: var(--navy); cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-outline {
+  padding: 16px 40px; border: 1px solid rgba(255,255,255,0.5);
+  font-size: 16px; font-weight: 400; letter-spacing: 2px;
+  color: #fff; cursor: pointer;
+  transition: border-color 0.3s, color 0.3s;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.scroll-indicator {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: bounce 2s infinite;
+}
+.scroll-indicator span { font-size: 12px; letter-spacing: 3px; color: var(--gold); }
+.scroll-indicator::after {
+  content: ''; width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTION COMMONS ===== */
+section { padding: 100px 40px; }
+.section-inner { max-width: 1300px; margin: 0 auto; }
+.section-label {
+  font-size: 15px; letter-spacing: 5px; color: var(--gold);
+  text-transform: uppercase; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: ''; width: 30px; height: 1px; background: var(--gold);
+}
+.section-title {
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  font-size: clamp(24px, 3.5vw, 42px); font-weight: 800;
+  line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.section-title em { color: var(--gold); font-style: normal; }
+.section-desc {
+  font-size: 20px; line-height: 1.8; color: #fff;
+  max-width: 600px;
+}
+.divider {
+  width: 60px; height: 2px; background: var(--gold);
+  margin: 24px 0;
+}
+
+/* ===== SUMMARY SECTION ===== */
+#summary {
+  background: var(--navy-mid);
+  position: relative; overflow: hidden;
+}
+#summary::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('img/sum_bg.png') center/cover no-repeat;
+  opacity: 0.08;
+}
+.summary-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start; position: relative; z-index: 1;
+}
+.summary-left .section-title { font-size: clamp(22px, 3vw, 38px); }
+.summary-list { margin-top: 40px; }
+.summary-item {
+  display: flex; border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 18px 0;
+}
+.summary-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.summary-label {
+  width: 130px; flex-shrink: 0;
+  font-size: 17px; letter-spacing: 1px; color: var(--gold);
+  font-weight: 500; padding-top: 2px;
+}
+.summary-value { font-size: 19px; line-height: 1.7; color: #fff; }
+.summary-right {
+  position: relative; overflow: hidden;
+  border-radius: 2px;
+}
+.summary-img {
+  width: 100%; height: 480px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.summary-right:hover .summary-img { transform: scale(1.03); }
+.summary-img-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 30px; background: linear-gradient(to top, rgba(10,22,40,0.9), transparent);
+}
+.summary-notice {
+  font-size: 15px; color: #fff; line-height: 1.8;
+  margin-top: 24px;
+}
+
+/* ===== LOCATION SECTION ===== */
+#location {
+  background: var(--navy);
+  position: relative;
+}
+.location-header { text-align: center; margin-bottom: 70px; }
+.location-header .section-label { justify-content: center; }
+.location-header .section-label::before { display: none; }
+.location-header .section-desc { margin: 0 auto; text-align: center; }
+.location-header .divider { margin: 24px auto; }
+
+.location-hero-img {
+  width: 100%; height: 400px; object-fit: cover;
+  margin-bottom: 70px;
+  position: relative;
+}
+.location-hero-wrap { position: relative; margin-bottom: 70px; overflow: hidden; }
+.location-hero-wrap img { width: 100%; height: 400px; object-fit: cover; }
+.location-hero-wrap::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(10,22,40,0.7) 0%, transparent 50%, rgba(10,22,40,0.3) 100%);
+}
+
+.value-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  margin-bottom: 70px;
+}
+.value-card {
+  background: var(--navy-mid);
+  padding: 40px 28px;
+  position: relative; overflow: hidden;
+  transition: background 0.3s;
+}
+.value-card:hover { background: rgba(201,169,110,0.1); }
+.value-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 3px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s;
+}
+.value-card:hover::before { transform: scaleX(1); }
+.value-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; color: rgba(201,169,110,0.15);
+  font-weight: 700; line-height: 1; margin-bottom: 20px;
+}
+.value-icon { font-size: 28px; margin-bottom: 16px; }
+.value-title {
+  font-size: 21px; font-weight: 700; color: var(--gold);
+  margin-bottom: 12px; letter-spacing: 1px;
+}
+.value-desc {
+  font-size: 17px; line-height: 1.8; color: #fff;
+}
+
+.location-imgs-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+  margin-top: 60px;
+}
+.location-img-item { overflow: hidden; position: relative; }
+.location-img-item img { width: 100%; height: 360px; object-fit: cover; transition: transform 0.5s; }
+.location-img-item:hover img { transform: scale(1.05); }
+.location-img-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 20px; background: linear-gradient(to top, rgba(10,22,40,0.85), transparent);
+  font-size: 17px; font-weight: 500; letter-spacing: 1px; color: var(--gold);
+}
+
+/* ===== COMPLEX / 단지안내 ===== */
+#complex { background: #060f1e; }
+.complex-header { margin-bottom: 50px; }
+.tab-nav {
+  display: flex; gap: 0; margin-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.tab-btn {
+  padding: 14px 28px; font-size: 17px; letter-spacing: 1px;
+  color: #fff; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color 0.3s, border-color 0.3s;
+  background: none; border-top: none; border-left: none; border-right: none;
+}
+.tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.complex-img-wrap { overflow: hidden; position: relative; cursor: zoom-in; background: #fff; padding: 48px 48px 0; border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.45); }
+.complex-img-wrap img { width: 100%; height: auto; display: block; background: #fff; transition: transform 0.4s; }
+.complex-img-wrap:hover img { transform: scale(1.02); }
+
+.complex-sub-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 3px;
+}
+.complex-sub-item { overflow: hidden; cursor: pointer; background: #fff; }
+.complex-sub-item img { width: 100%; height: 220px; object-fit: contain; padding: 10px; transition: opacity 0.3s; }
+.complex-sub-item:hover img { opacity: 0.8; }
+
+/* ===== 세대안내 / UNIT ===== */
+#unit {
+  background: var(--navy-mid);
+  position: relative; overflow: hidden;
+}
+#unit::before {
+  content: ''; position: absolute; top: 0; right: 0;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+}
+.unit-header { text-align: center; margin-bottom: 60px; }
+.unit-header .divider { margin: 20px auto; }
+
+.unit-type-nav {
+  display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+.unit-type-btn {
+  padding: 10px 24px; background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 17px; color: #fff;
+  cursor: pointer; letter-spacing: 1px;
+  transition: all 0.3s;
+}
+.unit-type-btn.active, .unit-type-btn:hover {
+  background: var(--gold); border-color: var(--gold); color: var(--navy);
+  font-weight: 700;
+}
+
+.unit-main-img { overflow: hidden; margin-bottom: 3px; }
+.unit-main-img img { width: 100%; height: auto; display: block; background: #0d1e35; transition: transform 0.3s; }
+.unit-main-img:hover img { transform: scale(1.01); }
+
+.unit-thumbs {
+  display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
+}
+.unit-thumb {
+  overflow: hidden; cursor: pointer; position: relative;
+}
+.unit-thumb img { width: 100%; height: 140px; object-fit: contain; background: #f5f0e8; transition: opacity 0.3s; }
+.unit-thumb:hover img { transform: scale(1.05); }
+.unit-thumb.active::after {
+  content: ''; position: absolute; inset: 0;
+  border: 2px solid var(--gold);
+}
+
+.unit-info {
+  margin-top: 40px; padding: 30px;
+  background: rgba(201,169,110,0.06); border-left: 3px solid var(--gold);
+}
+.unit-info-title { font-size: 24px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+.unit-info-desc { font-size: 18px; color: #fff; line-height: 1.8; }
+
+/* ===== 라이프스타일 / LINEUP ===== */
+#lifestyle {
+  background: url('img/brand_bg.jpg') center/cover fixed;
+  position: relative;
+}
+#lifestyle::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(10,22,40,0.88);
+}
+.lifestyle-inner { position: relative; z-index: 1; }
+.lifestyle-header { text-align: center; margin-bottom: 70px; }
+.lifestyle-header .divider { margin: 20px auto; }
+
+.lineup-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.lineup-card {
+  padding: 48px 36px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative; overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
+.lineup-card:hover {
+  background: rgba(201,169,110,0.08);
+  border-color: rgba(201,169,110,0.3);
+}
+.lineup-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px; color: rgba(201,169,110,0.12);
+  font-weight: 700; line-height: 1;
+  position: absolute; top: 20px; right: 24px;
+}
+.lineup-icon { font-size: 36px; margin-bottom: 20px; }
+.lineup-label {
+  font-size: 15px; letter-spacing: 3px; color: var(--gold);
+  margin-bottom: 12px;
+}
+.lineup-title {
+  font-size: 24px; font-weight: 700;
+  margin-bottom: 16px; line-height: 1.4;
+}
+.lineup-desc { font-size: 18px; line-height: 1.8; color: #fff; }
+
+/* ===== 인테리어 ===== */
+#interior { background: #060f1e; }
+.interior-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
+  margin-top: 50px;
+}
+.interior-item { overflow: hidden; position: relative; }
+.interior-item img { width: 100%; height: auto; display: block; transition: transform 0.6s; }
+.interior-item:hover img { transform: scale(1.04); }
+.interior-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,22,40,0); display: flex; align-items: flex-end;
+  padding: 30px; transition: background 0.3s;
+}
+.interior-item:hover .interior-overlay { background: rgba(10,22,40,0.3); }
+
+
+/* ===== 브랜드 소개 ===== */
+#brand { background: var(--navy-mid); position: relative; overflow: hidden; }
+#brand::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('img/brand_bg.jpg') center/cover;
+  opacity: 0.05;
+}
+.brand-inner { position: relative; z-index: 1; }
+.brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+
+.brand-img-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px;
+  background: #fff; padding: 24px 24px 0;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+.brand-img-item { overflow: hidden; }
+.brand-img-item img { width: 100%; height: 240px; object-fit: cover; transition: transform 0.5s; }
+.brand-img-item:hover img { transform: scale(1.06); }
+
+.awards-list { margin-top: 40px; }
+.award-item {
+  display: flex; gap: 20px; padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  align-items: flex-start;
+}
+.award-year {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px; color: var(--gold); font-weight: 700;
+  width: 80px; flex-shrink: 0; padding-top: 2px;
+}
+.award-title { font-size: 17px; color: #fff; line-height: 1.6; }
+
+/* ===== 분양안내 ===== */
+#supply { background: #060f1e; }
+.supply-tabs { display: flex; gap: 2px; margin-bottom: 3px; }
+.supply-tab {
+  flex: 1; padding: 20px; text-align: center;
+  background: rgba(255,255,255,0.04); cursor: pointer;
+  font-size: 17px; letter-spacing: 1px; color: #fff;
+  transition: all 0.3s; border: 1px solid transparent;
+}
+.supply-tab.active { background: rgba(201,169,110,0.1); border-color: rgba(201,169,110,0.3); color: var(--gold); }
+.supply-panel { display: none; }
+.supply-panel.active { display: block; }
+.supply-img img { width: 100%; max-height: 800px; object-fit: contain; background: #0d1e35; }
+
+/* ===== 관심고객등록 ===== */
+#register {
+  background: var(--navy-mid);
+  position: relative; overflow: hidden;
+}
+#register::before {
+  content: ''; position: absolute; inset: 0;
+  background: url('img/main_bg.png') center/cover;
+  opacity: 0.08;
+}
+.register-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; text-align: center; }
+.register-inner .section-label { justify-content: center; }
+.register-inner .section-label::before { display: none; }
+.register-inner .divider { margin: 20px auto; }
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; text-align: left; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-group label { font-size: 16px; letter-spacing: 2px; color: var(--gold); }
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+  padding: 14px 16px; color: #fff; font-size: 16px; font-family: inherit;
+  outline: none; transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--gold);
+}
+.form-group select option { background: var(--navy); }
+.form-group textarea { height: 100px; resize: none; }
+.form-agree {
+  grid-column: 1 / -1;
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 16px; color: #fff; line-height: 1.6;
+}
+.form-agree input { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; accent-color: var(--gold); }
+.form-submit {
+  grid-column: 1 / -1;
+  padding: 18px; background: var(--gold); border: none; cursor: pointer;
+  font-size: 16px; font-weight: 700; letter-spacing: 3px; color: var(--navy);
+  font-family: inherit; transition: background 0.3s;
+}
+.form-submit:hover { background: var(--gold-light); }
+
+/* ===== 오시는 길 ===== */
+#contact { background: var(--navy); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 50px; }
+
+.contact-map-wrap { overflow: hidden; }
+.contact-map-wrap img { width: 100%; object-fit: cover; cursor: pointer; transition: opacity 0.3s; }
+.contact-map-wrap:hover img { opacity: 0.9; }
+
+.contact-info-list { margin-top: 10px; }
+.contact-info-item { padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+.contact-info-item:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+.contact-info-type {
+  font-size: 15px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px;
+}
+.contact-info-addr { font-size: 20px; color: #fff; line-height: 1.7; }
+.contact-map-btns { display: flex; gap: 8px; margin-top: 12px; }
+.map-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 14px; background: rgba(255,255,255,0.07);
+  font-size: 16px; color: #fff;
+  cursor: pointer; transition: all 0.3s; border: 1px solid transparent;
+}
+.map-btn:hover { border-color: var(--gold); color: var(--gold); }
+.map-btn img { width: 16px; height: 16px; }
+
+.company-info {
+  margin-top: 50px; padding: 28px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+}
+.company-info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.company-info-item-title { font-size: 15px; letter-spacing: 2px; color: var(--gold); margin-bottom: 6px; }
+.company-info-item-value { font-size: 17px; color: #fff; line-height: 1.6; }
+
+/* ===== 프리미엄 이미지 갤러리 ===== */
+#gallery { background: #060f1e; padding: 0; }
+.gallery-strip {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px;
+}
+.gallery-item { overflow: hidden; position: relative; }
+.gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.6s; }
+.gallery-item:hover img { transform: scale(1.02); }
+.gallery-item-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,22,40,0.0);
+  transition: background 0.3s;
+}
+.gallery-item:hover .gallery-item-overlay { background: rgba(10,22,40,0.15); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #040d18;
+  padding: 60px 40px 40px;
+  border-top: 1px solid rgba(201,169,110,0.2);
+}
+.footer-inner { max-width: 1300px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; flex-wrap: wrap; gap: 40px; }
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; letter-spacing: 2px; color: var(--gold); margin-bottom: 12px;
+}
+.footer-tagline { font-size: 15px; color: #fff; letter-spacing: 2px; }
+
+.footer-links { display: flex; gap: 40px; flex-wrap: wrap; }
+.footer-link-group h4 {
+  font-size: 15px; letter-spacing: 2px; color: var(--gold);
+  margin-bottom: 16px; font-weight: 500;
+}
+.footer-link-group ul { display: flex; flex-direction: column; gap: 8px; }
+.footer-link-group ul a { font-size: 15px; color: #fff; transition: color 0.2s; }
+.footer-link-group ul a:hover { color: var(--gold); }
+
+.footer-contact { text-align: right; }
+.footer-tel { font-size: 28px; font-weight: 700; color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; }
+.footer-hrs { font-size: 15px; color: #fff; }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.05);
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-corp { font-size: 15px; color: #fff; line-height: 1.8; }
+.footer-copy { font-size: 14px; color: #fff; letter-spacing: 1px; }
+.footer-notice {
+  margin-top: 30px; padding: 20px;
+  background: rgba(255,255,255,0.02); border-left: 3px solid rgba(201,169,110,0.3);
+  font-size: 14px; color: #fff; line-height: 1.9;
+}
+
+/* ===== FIXED CTA BUTTON ===== */
+.fixed-cta {
+  position: fixed; bottom: 40px; right: 40px; z-index: 999;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.fixed-btn {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.fixed-btn:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+.fixed-btn.tel { background: var(--gold); }
+.fixed-btn.register { background: #c9a96e; font-size: 13px; font-weight: 700; color: #0a1628; letter-spacing: -0.5px; border-radius: 8px; width: auto; padding: 0 16px; height: 44px; }
+
+/* ===== OPEN BADGE ===== */
+.open-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--gold); color: var(--navy);
+  padding: 8px 20px; font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; margin-top: 30px;
+}
+.open-badge::before { content: '●'; font-size: 8px; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+/* ===== SCROLL ANIMATION ===== */
+.reveal {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  section { padding: 70px 24px; }
+  .summary-grid, .brand-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .value-grid { grid-template-columns: repeat(2, 1fr); }
+  .lineup-grid { grid-template-columns: repeat(2, 1fr); }
+  .unit-thumbs { grid-template-columns: repeat(4, 1fr); }
+  .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+  .magam-grid { grid-template-columns: repeat(2, 1fr); }
+  .company-info-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  #header { padding: 0 20px; }
+  .header-inner { height: 64px; }
+  nav { display: none; }
+  .hero-title { font-size: 32px; }
+  .value-grid { grid-template-columns: 1fr; }
+  .lineup-grid { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .footer-top { flex-direction: column; }
+  .footer-contact { text-align: left; }
+  .gallery-strip { grid-template-columns: 1fr; }
+  .complex-sub-grid { grid-template-columns: repeat(2, 1fr); }
+  .unit-thumbs { grid-template-columns: repeat(3, 1fr); }
+  .supply-tabs { flex-direction: column; }
+}
+
+  input::placeholder, textarea::placeholder, select { color: #fff; opacity: 1; }
+  input, textarea { color: #fff; }
+
+  /* 개인정보 처리방침 모달 */
+  #privacy-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+  #privacy-modal.open{display:flex}
+  #privacy-modal .pm-box{background:#0d1b14;border:1px solid rgba(198,161,91,.25);border-radius:20px;padding:40px 48px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;color:#d8e4dc;position:relative}
+  #privacy-modal h2{font-size:22px;color:#fff;margin:0 0 24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  #privacy-modal h3{font-size:14px;font-weight:900;color:#c6a15b;letter-spacing:.08em;margin:20px 0 6px}
+  #privacy-modal p{font-size:14px;line-height:1.75;margin:0 0 4px;color:#b0c4bc}
+  #privacy-modal .pm-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+  @media(max-width:600px){#privacy-modal .pm-box{padding:28px 20px}}
+
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#hero" class="logo">
+      HARRINGTON PLACE
+      <span>ORYONG STATION</span>
+    </a>
+    <nav>
+      <div class="nav-item">
+        <a href="#summary">사업안내</a>
+        <ul class="dropdown">
+          <li><a href="#summary">사업개요</a></li>
+          <li><a href="#brand">브랜드 소개</a></li>
+          <li><a href="#location">입지환경</a></li>
+          <li><a href="#contact">오시는 길</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="#complex">단지안내</a>
+        <ul class="dropdown">
+          <li><a href="#complex">단지배치도</a></li>
+          <li><a href="#complex">동호수배치도</a></li>
+          <li><a href="#complex">커뮤니티</a></li>
+          <li><a href="#complex">시스템</a></li>
+          <li><a href="#complex">제로에너지인증</a></li>
+          <li><a href="#complex">YBM영어커뮤니티</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="#unit">세대안내</a>
+        <ul class="dropdown">
+          <li><a href="#unit">세대안내</a></li>
+          <li><a href="#interior">인테리어</a></li>
+        </ul>
+      </div>
+      <div class="nav-item">
+        <a href="#register">홍보센터</a>
+        <ul class="dropdown">
+          <li><a href="#register">관심고객등록</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="header-cta">
+      <a href="tel:1800-3688" class="tel-link">1800-3688</a>
+      <a href="#register" class="cta-btn">관심고객등록</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">
+      탄방-용문-오룡으로<br>
+      <em>가치 UP!</em> 명문 학세권으로<br>
+      <em>교육 UP!</em>
+    </h1>
+    <p class="hero-sub">Harrington Place Oryong Station</p>
+    <div class="hero-tags">
+      <span class="hero-tag">더블역세권(예정)</span>
+      <span class="hero-tag">전 세대 84㎡</span>
+      <span class="hero-tag">지상 26층 5개동</span>
+      <span class="hero-tag">총 427세대</span>
+      <span class="hero-tag">제로에너지 인증</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#register" class="btn-primary">관심고객 등록</a>
+      <a href="#summary" class="btn-outline">사업 안내 보기</a>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>SCROLL</span></div>
+</section>
+
+<!-- ===== SUMMARY ===== -->
+<section id="summary">
+  <div class="section-inner summary-grid">
+    <div class="summary-left reveal">
+      <p class="section-label">SUMMARY</p>
+      <h2 class="section-title">해링턴 플레이스 오룡역<br><em>사업개요</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">대전 중구의 새로운 프리미엄 주거 랜드마크.<br>더블역세권과 명문학군이 공존하는 탁월한 입지.</p>
+      <ul class="summary-list">
+        <li class="summary-item">
+          <span class="summary-label">대지위치</span>
+          <span class="summary-value">대전광역시 중구 용두동 722번지 일원</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">대지면적</span>
+          <span class="summary-value">22,518.800㎡</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">건축면적</span>
+          <span class="summary-value">4,247.063㎡</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">연면적</span>
+          <span class="summary-value">86,602.823㎡</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">건폐/용적률</span>
+          <span class="summary-value">18.86% / 216.68%</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">규모</span>
+          <span class="summary-value">지하 5층, 지상 26층 5개동 / 총 427세대</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">주택형</span>
+          <span class="summary-value">84㎡ (전 세대 단일 평형)</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">시공사</span>
+          <span class="summary-value">진흥기업㈜</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">시행위탁사</span>
+          <span class="summary-value">㈜와이지개발, ㈜와이지인터내셔널</span>
+        </li>
+        <li class="summary-item">
+          <span class="summary-label">시행수탁자</span>
+          <span class="summary-value">한국투자부동산신탁㈜</span>
+        </li>
+      </ul>
+      <p class="summary-notice">ⓘ 홈페이지에 사용된 CG, 영상 등은 소비자의 이해를 돕기 위한 것으로 실제와 차이가 있을 수 있습니다.<br>ⓘ 상기면적은 계획면적으로 세부계획시 변경될 수 있습니다.</p>
+    </div>
+    <div class="summary-right reveal reveal-delay-2">
+      <img src="img/aerial_night.webp" alt="해링턴 플레이스 오룡역 야간 조감도" class="summary-img">
+      <div class="summary-img-overlay">
+        <p style="font-size:13px;color:var(--gold);letter-spacing:2px;">HYOSUNG HARRINGTON PLACE ORYONG STATION</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section id="location">
+  <div class="section-inner">
+    <div class="location-header reveal">
+      <p class="section-label">LOCATION</p>
+      <h2 class="section-title">해링턴 플레이스 오룡역 <em>입지환경</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">더블역세권(예정)의 편리함부터 명문 학군의 우수함까지<br>생활의 가치를 높이는 프리미엄 라인을 누리다</p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <div class="value-num">01</div>
+        <div class="value-icon">🚇</div>
+        <div class="value-title">교통의 가치 UP</div>
+        <p class="value-desc">지하철 1호선 오룡역세권, 계룡로, 계백로 등 쾌속 교통망과 용두역 개통 예정의 개발호재</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-num">02</div>
+        <div class="value-icon">🛒</div>
+        <div class="value-title">생활의 가치 UP</div>
+        <p class="value-desc">코스트코, 롯데백화점 등 쇼핑시설과 CGV, 메가박스, 성모병원, 충남대병원 등 다채로운 문화편의시설</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-num">03</div>
+        <div class="value-icon">📚</div>
+        <div class="value-title">교육의 가치 UP</div>
+        <p class="value-desc">도보로 통학하는 목동초, 대성 중·고, 충남여중·고를 비롯해 명문 학군과 인접한 교육환경</p>
+      </div>
+      <div class="value-card reveal reveal-delay-3">
+        <div class="value-num">04</div>
+        <div class="value-icon">🏗️</div>
+        <div class="value-title">설계의 가치 UP</div>
+        <p class="value-desc">전 세대 선호도 높은 84㎡ 구성, 남향위주 단지 배치와 전체 단지 필로티 설계로 쾌적함 상승</p>
+      </div>
+    </div>
+
+    <!-- 교통망 지도 (location_zoom.jpg) — 풀 사이즈로 -->
+    <div class="reveal" style="margin-top:60px;">
+      <p class="section-label" style="margin-bottom:16px;">교통환경 지도</p>
+      <div style="overflow:hidden;border:1px solid rgba(201,169,110,0.2);">
+        <img src="img/location_zoom.jpg" alt="교통망 지도" style="width:100%;height:auto;display:block;">
+      </div>
+    </div>
+
+    <!-- 4장 생활환경 이미지 2×2 -->
+    <div class="location-imgs-grid reveal" style="margin-top:3px;">
+      <div class="location-img-item">
+        <img src="img/location_img01.jpg" alt="교통환경">
+        <div class="location-img-label">🚇 더블역세권 (예정)</div>
+      </div>
+      <div class="location-img-item">
+        <img src="img/location_img02.jpg" alt="생활환경">
+        <div class="location-img-label">🛒 편리한 생활인프라</div>
+      </div>
+      <div class="location-img-item">
+        <img src="img/location_img03.jpg" alt="교육환경">
+        <div class="location-img-label">📚 명문 학세권</div>
+      </div>
+      <div class="location-img-item">
+        <img src="img/location_img04.jpg" alt="단지전경">
+        <div class="location-img-label">🏙️ 프리미엄 단지 설계</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 갤러리 STRIP ===== -->
+<div id="gallery">
+  <div class="gallery-strip">
+    <div class="gallery-item">
+      <img src="img/premium_img01.jpg" alt="premium 01">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/premium_img02.jpg" alt="premium 02">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/premium_img03.jpg" alt="premium 03">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="img/premium_img04.jpg" alt="premium 04">
+      <div class="gallery-item-overlay"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 단지안내 ===== -->
+<section id="complex">
+  <div class="section-inner">
+    <div class="complex-header">
+      <p class="section-label">COMPLEX GUIDE</p>
+      <h2 class="section-title">단지 <em>안내</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-complex')">단지배치도</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-dh')">동호수배치도</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-community')">커뮤니티</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-system')">시스템</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-zero')">제로에너지인증</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-ybm')">YBM영어커뮤니티</button>
+    </div>
+
+    <div id="tab-complex" class="tab-panel active">
+      <div class="complex-img-wrap">
+        <img src="sub/complex.jpg" alt="단지배치도">
+      </div>
+    </div>
+    <div id="tab-dh" class="tab-panel">
+      <div class="complex-img-wrap">
+        <img src="sub/dh.jpg" alt="동호수배치도">
+      </div>
+    </div>
+    <div id="tab-community" class="tab-panel">
+      <div class="complex-img-wrap">
+        <img src="sub/community.jpg" alt="커뮤니티">
+      </div>
+    </div>
+    <div id="tab-system" class="tab-panel">
+      <div class="complex-img-wrap">
+        <img src="sub/system.jpg" alt="시스템">
+      </div>
+    </div>
+    <div id="tab-zero" class="tab-panel">
+      <div class="complex-img-wrap">
+        <img src="sub/zero.jpg" alt="제로에너지인증">
+      </div>
+    </div>
+    <div id="tab-ybm" class="tab-panel">
+      <div class="complex-img-wrap">
+        <img src="sub/ybm.jpg" alt="YBM영어커뮤니티">
+      </div>
+    </div>
+
+    <div class="complex-sub-grid" style="margin-top:30px;">
+      <div class="complex-sub-item" onclick="switchToTab('tab-complex')">
+        <img src="sub/complex.jpg" alt="단지배치도">
+      </div>
+      <div class="complex-sub-item" onclick="switchToTab('tab-dh')">
+        <img src="sub/dh.jpg" alt="동호수배치도">
+      </div>
+      <div class="complex-sub-item" onclick="switchToTab('tab-community')">
+        <img src="sub/community.jpg" alt="커뮤니티">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 세대안내 ===== -->
+<section id="unit">
+  <div class="section-inner">
+    <div class="unit-header reveal">
+      <p class="section-label">UNIT GUIDE</p>
+      <h2 class="section-title">세대 <em>안내</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">전 세대 선호도 높은 84㎡ 단일 구성.<br>와이드 주방, 분리형 세탁실, 팬트리, 알파룸, 드레스룸 등 생활동선 맞춤 설계</p>
+    </div>
+
+    <div class="unit-type-nav">
+      <button class="unit-type-btn active" onclick="changeUnit(0, this)">84A타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(1, this)">84B타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(2, this)">84C타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(3, this)">84D타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(4, this)">84E타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(5, this)">84F타입</button>
+      <button class="unit-type-btn" onclick="changeUnit(6, this)">84G타입</button>
+    </div>
+
+    <div class="unit-main-img reveal">
+      <img id="unit-main" src="sub/unit01.jpg" alt="84A타입 평면도">
+    </div>
+
+    <div class="unit-thumbs" style="margin-top:4px;">
+      <div class="unit-thumb active" onclick="changeUnit(0, null, this)">
+        <img src="sub/unit01.jpg" alt="84A">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(1, null, this)">
+        <img src="sub/unit02.jpg" alt="84B">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(2, null, this)">
+        <img src="sub/unit03.jpg" alt="84C">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(3, null, this)">
+        <img src="sub/unit04.jpg" alt="84D">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(4, null, this)">
+        <img src="sub/unit05.jpg" alt="84E">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(5, null, this)">
+        <img src="sub/unit06.jpg" alt="84F">
+      </div>
+      <div class="unit-thumb" onclick="changeUnit(6, null, this)">
+        <img src="sub/unit07.jpg" alt="84G">
+      </div>
+    </div>
+
+    <div class="unit-info reveal">
+      <div class="unit-info-title">84㎡ 단일 평형 구성</div>
+      <p class="unit-info-desc">
+        와이드 주방 · 분리형 세탁실 · 팬트리 · 알파룸 · 드레스룸 등 생활동선 맞춤 설계로<br>
+        공간의 편리함을 극대화한 해링턴 플레이스만의 프리미엄 세대 구성입니다.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== 라이프스타일 ===== -->
+<section id="lifestyle">
+  <div class="section-inner lifestyle-inner">
+    <div class="lifestyle-header reveal">
+      <p class="section-label" style="justify-content:center;">BEST LIFE STYLE</p>
+      <h2 class="section-title">해링턴 플레이스 오룡역이 디자인하는<br><em>탁월한 라이프스타일</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="lineup-grid">
+      <div class="lineup-card reveal">
+        <div class="lineup-num">01</div>
+        <div class="lineup-icon">🚄</div>
+        <div class="lineup-label">LINE-UP 01</div>
+        <h3 class="lineup-title">교통은 어디로든 빠르게</h3>
+        <p class="lineup-desc">편리한 오룡역세권 입지, 도로, 광역철도, KTX, SRT 등 멀티 교통망</p>
+      </div>
+      <div class="lineup-card reveal reveal-delay-1">
+        <div class="lineup-num">02</div>
+        <div class="lineup-icon">🎓</div>
+        <div class="lineup-label">LINE-UP 02</div>
+        <h3 class="lineup-title">아이의 교육은 안심되게</h3>
+        <p class="lineup-desc">목동초, 대성중·고, 충남여중·고 등 도보로 안심통학하는 평생학세권</p>
+      </div>
+      <div class="lineup-card reveal reveal-delay-2">
+        <div class="lineup-num">03</div>
+        <div class="lineup-icon">🏠</div>
+        <div class="lineup-label">LINE-UP 03</div>
+        <h3 class="lineup-title">공간의 편리함 가득하게</h3>
+        <p class="lineup-desc">와이드 주방, 분리형 세탁실, 팬트리, 알파룸, 드레스룸 등 생활동선 맞춤 설계</p>
+      </div>
+      <div class="lineup-card reveal reveal-delay-1">
+        <div class="lineup-num">04</div>
+        <div class="lineup-icon">🌿</div>
+        <div class="lineup-label">LINE-UP 04</div>
+        <h3 class="lineup-title">라이프 스타일은 특별하게</h3>
+        <p class="lineup-desc">맘스테이션과 맘스카페, 유아/어린이놀이터 등 아이도 엄마도 즐거운 단지 설계</p>
+      </div>
+      <div class="lineup-card reveal reveal-delay-2">
+        <div class="lineup-num">05</div>
+        <div class="lineup-icon">♻️</div>
+        <div class="lineup-label">LINE-UP 05</div>
+        <h3 class="lineup-title">환경과 에너지까지 꼼꼼하게</h3>
+        <p class="lineup-desc">제로에너지 인증 친환경 단지 친환경 시스템으로 관리비 절약</p>
+      </div>
+      <div class="lineup-card reveal reveal-delay-3">
+        <div class="lineup-num">06</div>
+        <div class="lineup-icon">⭐</div>
+        <div class="lineup-label">LINE-UP 06</div>
+        <h3 class="lineup-title">브랜드 자부심도 품격있게</h3>
+        <p class="lineup-desc">한층 더 높은 품격과 자부심으로 대한민국 주거문화의 리딩브랜드 해링턴 플레이스</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 인테리어 ===== -->
+<section id="interior">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">WARM &amp; SPECIAL DESIGN</p>
+      <h2 class="section-title">인테리어 <em>디자인</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">공간을 부드럽게 감싸는 따스한 감성과 집안 곳곳 섬세하게 가공된 고급스러움으로 시간이 지나도 변치 않는 차원이 다른 라이프스타일을 완성합니다.</p>
+    </div>
+    <div class="interior-grid">
+      <div class="interior-item reveal">
+        <img src="sub/interior01.jpg" alt="인테리어 01">
+        <div class="interior-overlay"></div>
+      </div>
+      <div class="interior-item reveal reveal-delay-1">
+        <img src="sub/interior02.jpg" alt="인테리어 02">
+        <div class="interior-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 브랜드 소개 ===== -->
+<section id="brand">
+  <div class="section-inner brand-inner">
+    <div class="brand-grid">
+      <div class="reveal">
+        <p class="section-label">BRAND</p>
+        <h2 class="section-title"><em>효성 해링턴 플레이스</em><br>브랜드 소개</h2>
+        <div class="divider"></div>
+        <p class="section-desc" style="margin-bottom:30px;">
+          INNOVATIVE — 모두들 프리미엄만을 이야기할때<br>
+          해링턴 플레이스는 '혁신'을 꿈꾸었습니다.<br>
+          전통성 위에 미래를 짓습니다.
+        </p>
+        <p class="section-desc">
+          최고를 넘어 가장 특별한 가치로 최중심 랜드마크가 될 명품아파트.<br>
+          효성해링턴 플레이스가 대전 주거문화의 기준이 됩니다.
+        </p>
+
+        <div class="awards-list">
+          <div class="award-item">
+            <span class="award-year">2024–2022</span>
+            <span class="award-title">고객사랑 브랜드 대상 (브랜드 아파트 부문) 대상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2021</span>
+            <span class="award-title">조선일보 미래건축문화대상 고객만족(아파트) 부문 대상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2021–2019</span>
+            <span class="award-title">한국소비자협회 올해의 최고브랜드 대상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2020</span>
+            <span class="award-title">소비자 선정 최고의 브랜드 대상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2019</span>
+            <span class="award-title">한경 주거문화대상 고객만족 대상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2018</span>
+            <span class="award-title">서울특별시 환경상 (조경생태분야) 최우수상 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2018–2016</span>
+            <span class="award-title">한국의 가장 사랑받는 브랜드 대상 (아파트부문) 수상</span>
+          </div>
+          <div class="award-item">
+            <span class="award-year">2016</span>
+            <span class="award-title">친환경건설 산업대상 국토교통부 장관상 수상</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="brand-img-grid reveal reveal-delay-1">
+          <div class="brand-img-item">
+            <img src="img/brand_img01.jpg" alt="브랜드 이미지 01">
+          </div>
+          <div class="brand-img-item">
+            <img src="img/brand_img02.jpg" alt="브랜드 이미지 02">
+          </div>
+          <div class="brand-img-item">
+            <img src="img/brand_img03.jpg" alt="브랜드 이미지 03">
+          </div>
+          <div class="brand-img-item">
+            <img src="img/brand_img04.jpg" alt="브랜드 이미지 04">
+          </div>
+        </div>
+
+        <div style="background:#fff;padding:0 24px 24px;border-radius:0 0 4px 4px;box-shadow:0 8px 40px rgba(0,0,0,0.35);display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0;" class="reveal reveal-delay-2">
+          <div style="overflow:hidden;padding-top:16px;">
+            <img src="sub/brand.jpg" alt="브랜드" style="width:100%;height:auto;display:block;">
+          </div>
+          <div style="overflow:hidden;padding-top:16px;">
+            <img src="sub/zero.jpg" alt="제로에너지" style="width:100%;height:auto;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== 관심고객 등록 ===== -->
+<section id="register">
+  <div class="register-inner">
+    <p class="section-label">REGISTER</p>
+    <h2 class="section-title">관심고객 <em>등록</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc" style="margin:0 auto;text-align:center;">
+      해링턴 플레이스 오룡역 분양 정보를<br>빠르게 받아보세요.
+    </p>
+
+    <form class="form-grid" action="https://formsubmit.co/wapplekorea@naver.com" method="POST">
+      <input type="hidden" name="_subject" value="[해링턴 플레이스 오룡역] 관심고객 등록">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_next" value="https://xn--om2bop4u09yg7dnjk2fq44ab3hw3a.com">
+      <div class="form-group">
+        <label>성함 *</label>
+        <input type="text" placeholder="이름을 입력해주세요" required>
+      </div>
+      <div class="form-group">
+        <label>연락처 *</label>
+        <input type="tel" placeholder="010-0000-0000" required>
+      </div>
+      <div class="form-group">
+        <label>거주지역</label>
+        <input type="text" placeholder="예) 대전, 세종, 서울">
+      </div>
+      <div class="form-group">
+        <label>관심평형</label>
+        <select>
+          <option value="">선택해주세요</option>
+          <option>84㎡ A타입</option>
+          <option>84㎡ B타입</option>
+          <option>84㎡ C타입</option>
+          <option>84㎡ D타입</option>
+          <option>84㎡ E타입</option>
+          <option>84㎡ F타입</option>
+          <option>84㎡ G타입</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>구입목적</label>
+        <select>
+          <option value="">선택해주세요</option>
+          <option>실거주</option>
+          <option>투자</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>연락가능시간</label>
+        <select>
+          <option value="">선택해주세요</option>
+          <option>오전 (09:00~12:00)</option>
+          <option>오후 (12:00~18:00)</option>
+          <option>저녁 (18:00~21:00)</option>
+          <option>언제든지</option>
+        </select>
+      </div>
+      <div class="form-group full form-agree">
+        <input type="checkbox" id="agree" required>
+        <label for="agree">
+          개인정보 수집 및 이용에 동의합니다. 수집 항목: 성명, 연락처. 수집 목적: 분양 상담 및 정보 제공. 보유 기간: 분양 완료 시까지.
+        </label>
+      </div>
+      <button type="submit" class="form-submit">관심고객 등록하기</button>
+    </form>
+    <p style="margin-top:16px;font-size:14px;color: #fff;text-align:center;">※ 등록하신 정보는 분양 상담 목적으로만 활용됩니다.</p>
+  </div>
+</section>
+
+<!-- ===== 오시는 길 ===== -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">CONTACT</p>
+      <h2 class="section-title">해링턴 플레이스 오룡역 <em>오시는 길</em></h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-map-wrap reveal">
+          <img src="sub/contact02.jpg" alt="현장 오시는 길">
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="contact-info-type">현장</div>
+            <div class="contact-info-addr">대전시 중구 용두동 722번지</div>
+            <div class="contact-map-btns" style="margin-top:12px;">
+              <a href="https://naver.me/Goic4At8" target="_blank" class="map-btn">
+                <img src="sub/naver.png" alt="네이버"> 네이버
+              </a>
+              <a href="https://kko.kakao.com/JBDicyi1KT" target="_blank" class="map-btn">
+                <img src="sub/kakao.png" alt="카카오"> 카카오
+              </a>
+              <a href="https://tmap.life/43e7bc4a" target="_blank" class="map-btn">
+                <img src="sub/tmap.png" alt="티맵"> 티맵
+              </a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-type">대표전화</div>
+            <div class="contact-info-addr" style="font-size:28px;font-weight:700;color:var(--gold);letter-spacing:2px;">1800-3688</div>
+          </div>
+        </div>
+
+        <div class="company-info" style="margin-top:40px;">
+          <div class="company-info-grid">
+            <div>
+              <div class="company-info-item-title">시행위탁사</div>
+              <div class="company-info-item-value">㈜와이지개발<br>㈜와이지인터내셔널</div>
+            </div>
+            <div>
+              <div class="company-info-item-title">시공사</div>
+              <div class="company-info-item-value">진흥기업㈜</div>
+            </div>
+            <div>
+              <div class="company-info-item-title">시행수탁자</div>
+              <div class="company-info-item-value">한국투자부동산신탁㈜</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">HARRINGTON PLACE ORYONG STATION</div>
+        <div class="footer-tagline">효성 해링턴 플레이스 오룡역 | DAEJEON</div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-link-group">
+          <h4>사업안내</h4>
+          <ul>
+            <li><a href="#summary">사업개요</a></li>
+            <li><a href="#brand">브랜드 소개</a></li>
+            <li><a href="#location">입지환경</a></li>
+            <li><a href="#contact">오시는 길</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group">
+          <h4>단지안내</h4>
+          <ul>
+            <li><a href="#complex">단지배치도</a></li>
+            <li><a href="#complex">동호수배치도</a></li>
+            <li><a href="#complex">커뮤니티</a></li>
+            <li><a href="#complex">시스템</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group">
+          <h4>세대안내</h4>
+          <ul>
+            <li><a href="#unit">세대안내</a></li>
+            <li><a href="#interior">인테리어</a></li>
+          </ul>
+        </div>
+        <div class="footer-link-group">
+          <h4>홍보센터</h4>
+          <ul>
+            <li><a href="#register">관심고객등록</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-contact">
+        <div class="footer-tel">1800-3688</div>
+        <div class="footer-hrs">분양 문의 상담</div>
+      </div>
+    </div>
+
+    <div class="footer-notice">
+      ※ 본 홍보물에 사용된 CG 및 일러스트, 이미지 등은 소비자의 이해를 돕기 위한 것으로 실제와 다를 수 있습니다.<br>
+      ※ 본 홍보물에 표기된 개발계획 및 계획도로(예정) 등은 추진 예정 중인 사항을 표현한 것으로 인·허가 과정 및 국가기관, 관할 지자체 및 기타 관계기관의 사업추진 중 변경, 지연, 취소될 수 있습니다.<br>
+      ※ 본 홍보물의 내용은 인·허가 과정상 변경될 수 있으니 계약 시 주요 내용을 반드시 확인하시기 바랍니다.
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-copy">COPYRIGHT © 해링턴플레이스오룡역. ALL RIGHTS RESERVED. &nbsp;|&nbsp; <a href="#" onclick="event.preventDefault();document.getElementById('privacy-modal').classList.add('open')" style="color:inherit;text-decoration:underline;text-underline-offset:3px">개인정보 처리방침</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FIXED CTA ===== -->
+<div class="fixed-cta">
+  <a href="tel:1800-3688" class="fixed-btn tel" title="전화문의">📞</a>
+  <a href="#register" class="fixed-btn register">관심고객</a>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+// Header scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Unit switcher
+const unitImgs = [
+  'sub/unit01.jpg',
+  'sub/unit02.jpg',
+  'sub/unit03.jpg',
+  'sub/unit04.jpg',
+  'sub/unit05.jpg',
+  'sub/unit06.jpg',
+  'sub/unit07.jpg'
+];
+const unitTypes = ['84A타입','84B타입','84C타입','84D타입','84E타입','84F타입','84G타입'];
+
+function changeUnit(idx, btn, thumb) {
+  document.getElementById('unit-main').src = unitImgs[idx];
+  document.getElementById('unit-main').alt = unitTypes[idx] + ' 평면도';
+  // Update type nav
+  document.querySelectorAll('.unit-type-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  // Update thumbs
+  document.querySelectorAll('.unit-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
+}
+
+// Tab switcher (complex)
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+function switchToTab(tabId) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  const idx = ['tab-complex','tab-dh','tab-community','tab-system','tab-zero','tab-ybm'].indexOf(tabId);
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+}
+
+// Supply tab switcher
+function switchSupply(btn, panelId) {
+  document.querySelectorAll('.supply-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.supply-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('관심고객 등록이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.\n\n☎ 1800-3688');
+}
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+  <!-- 개인정보 처리방침 모달 -->
+  <div id="privacy-modal" role="dialog" aria-modal="true" aria-label="개인정보 처리방침">
+    <div class="pm-box">
+      <button class="pm-close" onclick="document.getElementById('privacy-modal').classList.remove('open')" aria-label="닫기">✕</button>
+      <h2>개인정보 처리방침</h2>
+      <p>본 홈페이지 운영사(이하 "회사")는 해링턴 플레이스 오룡역 분양 상담 서비스 운영을 위해 아래와 같이 개인정보를 처리합니다.</p>
+
+      <h3>1. 수집하는 개인정보 항목</h3>
+      <p>성명, 연락처, 거주지역, 관심평형, 구입목적, 연락가능시간</p>
+
+      <h3>2. 수집 및 이용 목적</h3>
+      <p>분양 상담 안내, 방문예약 접수, 분양 관련 정보 제공</p>
+
+      <h3>3. 보유 및 이용 기간</h3>
+      <p>분양 완료 시까지. 단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 보유합니다.</p>
+
+      <h3>4. 제3자 제공</h3>
+      <p>원칙적으로 수집한 개인정보를 제3자에게 제공하지 않습니다.</p>
+
+      <h3>5. 정보주체의 권리</h3>
+      <p>본인의 개인정보에 대한 열람·정정·삭제·처리정지를 요청할 수 있습니다.<br>문의: 1800-3688</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('privacy-modal').addEventListener('click', function(e){
+      if(e.target===this) this.classList.remove('open');
+    });
+  </script>
+
+</body>
+</html>
