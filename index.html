@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- 네이버 파워링크 클릭 어뷰징 방지 -->
+<script>
+(function(){
+  var qs=window.location.search;
+  // 네이버 광고 파라미터가 없으면 무시
+  if(!/[?&](n_media|n_query|n_rank|n_ad_group|n_ad|n_keyword_id|n_campaign_type)=/.test(qs))return;
+  var K='__nv_cf__', MAX=5, WIN=86400000, now=Date.now();
+  try{
+    var list=JSON.parse(localStorage.getItem(K)||'[]').filter(function(t){return now-t<WIN;});
+    list.push(now);
+    localStorage.setItem(K,JSON.stringify(list));
+    if(list.length>MAX){
+      // 24시간 내 5회 초과: 페이지 즉시 은폐
+      document.documentElement.style.display='none';
+      setTimeout(function(){window.location.replace('about:blank');},0);
+    }
+  }catch(e){}
+})();
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>해링턴 플레이스 오룡역 | Harrington Place Oryong Station</title>
