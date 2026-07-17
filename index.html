@@ -1335,26 +1335,21 @@ footer {
       해링턴 플레이스 오룡역 분양 정보를<br>빠르게 받아보세요.
     </p>
 
-    <form class="form-grid" action="https://formsubmit.co/wapplekorea@naver.com" method="POST">
-      <input type="hidden" name="_subject" value="[해링턴 플레이스 오룡역] 관심고객 등록">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_next" value="https://xn--om2bop4u09yg7dnjk2fq44ab3hw3a.com">
-      <div class="form-group">
+    <form class="form-grid consult-form" data-project="해링턴 플레이스 2">      <div class="form-group">
         <label>성함 *</label>
-        <input type="text" placeholder="이름을 입력해주세요" required>
+        <input type="text" name="name" placeholder="이름을 입력해주세요" required>
       </div>
       <div class="form-group">
         <label>연락처 *</label>
-        <input type="tel" placeholder="010-0000-0000" required>
+        <input type="tel" name="phone" placeholder="010-0000-0000" required>
       </div>
       <div class="form-group">
         <label>거주지역</label>
-        <input type="text" placeholder="예) 대전, 세종, 서울">
+        <input type="text" name="message" placeholder="예) 대전, 세종, 서울">
       </div>
       <div class="form-group">
         <label>관심평형</label>
-        <select>
+        <select name="type">
           <option value="">선택해주세요</option>
           <option>84㎡ A타입</option>
           <option>84㎡ B타입</option>
@@ -1376,7 +1371,7 @@ footer {
       </div>
       <div class="form-group">
         <label>연락가능시간</label>
-        <select>
+        <select name="date">
           <option value="">선택해주세요</option>
           <option>오전 (09:00~12:00)</option>
           <option>오후 (12:00~18:00)</option>
@@ -1391,6 +1386,7 @@ footer {
         </label>
       </div>
       <button type="submit" class="form-submit">관심고객 등록하기</button>
+      <div class="form-status" aria-live="polite" style="margin-top:10px;font-weight:bold;color:#c0392b;"></div>
     </form>
     <p style="margin-top:16px;font-size:14px;color: #fff;text-align:center;">※ 등록하신 정보는 분양 상담 목적으로만 활용됩니다.</p>
   </div>
@@ -1626,5 +1622,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   </script>
 
+  <script>
+    (function(){
+      var ENDPOINT='https://script.google.com/macros/s/AKfycbzXiCO-C1RmUXb96X-Cx8bluQzdhWhGZDrT5ECLGosPDD4_sX8irZmu4pZ3veovgEOa/exec';
+      document.querySelectorAll('.consult-form').forEach(function(form){
+        form.addEventListener('submit',function(e){
+          e.preventDefault();
+          var status=form.querySelector('.form-status');
+          var btn=form.querySelector('button[type="submit"]');
+          var fd=new FormData(form);
+          fd.append('project',form.dataset.project||document.title);
+          fd.append('page',location.href);
+          fd.append('userAgent',navigator.userAgent);
+          btn.disabled=true; if(status) status.textContent='접수 중입니다...';
+          fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:fd})
+            .then(function(){ form.reset(); if(status) status.textContent='상담신청이 접수되었습니다. 담당자가 순차 연락드립니다.'; })
+            .catch(function(){ if(status) status.textContent='접수 중 오류가 발생했습니다. 1800-3688로 전화상담 부탁드립니다.'; })
+            .finally(function(){ btn.disabled=false; });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
