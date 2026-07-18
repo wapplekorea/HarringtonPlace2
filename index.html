@@ -1651,7 +1651,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           e.preventDefault();
           var status=form.querySelector('.form-status');
           var btn=form.querySelector('button[type="submit"]');
-          var fd=new FormData(form);
+          var fd=new URLSearchParams();
+          new FormData(form).forEach(function(v,k){fd.append(k,v);});
           fd.append('project',form.dataset.project||document.title);
           fd.append('page',location.href);
           fd.append('userAgent',navigator.userAgent);
