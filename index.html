@@ -1356,7 +1356,8 @@ footer {
       해링턴 플레이스 오룡역 분양 정보를<br>빠르게 받아보세요.
     </p>
 
-    <form class="form-grid consult-form" data-project="해링턴 플레이스 2">      <div class="form-group">
+    <form class="form-grid consult-form" data-project="해링턴 플레이스 2">
+      <div class="form-group">
         <label>성함 *</label>
         <input type="text" name="name" placeholder="이름을 입력해주세요" required>
       </div>
@@ -1365,11 +1366,7 @@ footer {
         <input type="tel" name="phone" placeholder="010-0000-0000" required>
       </div>
       <div class="form-group">
-        <label>거주지역</label>
-        <input type="text" name="message" placeholder="예) 대전, 세종, 서울">
-      </div>
-      <div class="form-group">
-        <label>관심평형</label>
+        <label>관심 타입</label>
         <select name="type">
           <option value="">선택해주세요</option>
           <option>84㎡ A타입</option>
@@ -1379,26 +1376,16 @@ footer {
           <option>84㎡ E타입</option>
           <option>84㎡ F타입</option>
           <option>84㎡ G타입</option>
+          <option>상담 후 결정</option>
         </select>
       </div>
       <div class="form-group">
-        <label>구입목적</label>
-        <select>
-          <option value="">선택해주세요</option>
-          <option>실거주</option>
-          <option>투자</option>
-          <option>기타</option>
-        </select>
+        <label>방문 희망일</label>
+        <input type="date" name="date">
       </div>
-      <div class="form-group">
-        <label>연락가능시간</label>
-        <select name="date">
-          <option value="">선택해주세요</option>
-          <option>오전 (09:00~12:00)</option>
-          <option>오후 (12:00~18:00)</option>
-          <option>저녁 (18:00~21:00)</option>
-          <option>언제든지</option>
-        </select>
+      <div class="form-group full">
+        <label>문의 내용</label>
+        <textarea name="message" rows="4" placeholder="분양가, 관심평형, 방문예약 등 문의 내용을 남겨주세요." style="width:100%;border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:12px 14px;font:inherit;background:rgba(255,255,255,.05);color:#fff;resize:vertical;min-height:100px;box-sizing:border-box;"></textarea>
       </div>
       <div class="form-group full form-agree">
         <input type="checkbox" id="agree" required>
