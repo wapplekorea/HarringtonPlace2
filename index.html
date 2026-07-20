@@ -855,6 +855,39 @@ footer {
     .brand-card-grid{background:#fff;padding:0 24px 24px;border-radius:0 0 4px 4px;box-shadow:0 8px 40px rgba(0,0,0,0.35);display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0;}
     @media(max-width:600px){.brand-card-grid{grid-template-columns:1fr;}}
   </style>
+
+  <!-- Apple Design System -->
+  <style>
+    :root{--spring:cubic-bezier(0.34,1.56,0.64,1);--ease-out:cubic-bezier(0.25,0.46,0.45,0.94)}
+    .btn{transition:transform 180ms var(--spring),box-shadow 250ms var(--ease-out);will-change:transform}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(0,0,0,.22)}
+    .btn.primary:hover{box-shadow:0 14px 36px rgba(198,161,91,.32)}
+    .btn:active{transform:scale(0.96) !important;transition-duration:70ms !important}
+    .phone-pill{transition:transform 250ms var(--spring),box-shadow 300ms var(--ease-out);will-change:transform}
+    .phone-pill:hover{transform:scale(1.06);box-shadow:0 18px 44px rgba(198,161,91,.40)}
+    .phone-pill:active{transform:scale(0.97) !important;transition-duration:70ms !important}
+    .menu a{position:relative;transition:color 200ms var(--ease-out)}
+    .menu a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold2);transition:width 300ms var(--spring)}
+    .menu a:hover{color:var(--gold2)}
+    .menu a:hover::after{width:100%}
+    .header{backdrop-filter:blur(24px) saturate(220%);-webkit-backdrop-filter:blur(24px) saturate(220%)}
+    .premium-card{transition:transform 380ms var(--spring),box-shadow 380ms var(--ease-out);will-change:transform}
+    .premium-card:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 36px 80px rgba(0,0,0,.30)}
+    .unit-card{transition:transform 350ms var(--spring),box-shadow 350ms var(--ease-out) !important}
+    .unit-card:hover{transform:translateY(-6px) !important;box-shadow:0 28px 70px rgba(0,0,0,.28) !important}
+    .loc{transition:transform 350ms var(--spring),box-shadow 350ms var(--ease-out),background 200ms ease}
+    .loc:hover{transform:translateY(-5px);box-shadow:0 22px 55px rgba(10,35,30,.13);background:#fcf7ef}
+    .feature{transition:background 200ms var(--ease-out),border-color 200ms ease,transform 300ms var(--spring)}
+    .feature:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.24);transform:translateY(-3px)}
+    .consult-form input:focus,.consult-form select:focus,.consult-form textarea:focus{outline:none;border-color:var(--green2);box-shadow:0 0 0 3.5px rgba(17,80,67,.18);transition:border-color 150ms var(--ease-out),box-shadow 250ms var(--spring)}
+    .quick{transition:background 220ms var(--ease-out)}
+    .quick:hover{background:#0f2b24}
+    .row{transition:background 180ms var(--ease-out)}
+    .row:hover{background:rgba(11,56,47,.05)}
+    .sticky a{transition:transform 140ms var(--spring)}
+    .sticky a:active{transform:scale(0.95) !important;transition-duration:60ms !important}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:50ms !important;animation-duration:50ms !important}.premium-card:hover,.unit-card:hover,.loc:hover,.feature:hover{transform:none !important}}
+  </style>
 </head>
 <body>
 
@@ -1673,6 +1706,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         });
       });
     })();
+  </script>
+  <script>
+  document.querySelectorAll('input[type="date"]').forEach(function(el){
+    el.addEventListener('click',function(){try{this.showPicker();}catch(e){}});
+    el.style.cursor='pointer';
+  });
   </script>
 </body>
 </html>
