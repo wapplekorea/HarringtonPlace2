@@ -849,6 +849,10 @@ footer {
       }
       .tab-btn.active { border-color: var(--gold); color: var(--gold); }
     }
+  
+    /* 브랜드 카드 하단 그리드 모바일 */
+    .brand-card-grid{background:#fff;padding:0 24px 24px;border-radius:0 0 4px 4px;box-shadow:0 8px 40px rgba(0,0,0,0.35);display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0;}
+    @media(max-width:600px){.brand-card-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -1349,7 +1353,7 @@ footer {
           </div>
         </div>
 
-        <div style="background:#fff;padding:0 24px 24px;border-radius:0 0 4px 4px;box-shadow:0 8px 40px rgba(0,0,0,0.35);display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:0;" class="reveal reveal-delay-2">
+        <div class="brand-card-grid" class="reveal reveal-delay-2">
           <div style="overflow:hidden;padding-top:16px;">
             <img src="sub/brand.jpg" alt="브랜드" style="width:100%;height:auto;display:block;">
           </div>
