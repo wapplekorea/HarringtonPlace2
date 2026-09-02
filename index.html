@@ -1700,7 +1700,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           fd.append('userAgent',navigator.userAgent);
           btn.disabled=true; if(status) status.textContent='접수 중입니다...';
           fetch(ENDPOINT,{method:'POST',mode:'no-cors',body:fd})
-            .then(function(){ form.reset(); if(status) status.textContent='if(window.wcs){if(!wcs_add)var wcs_add={};wcs_add['wa']='s_3c3072383356';var _conv={};_conv.type='lead';wcs.trans(_conv);} 상담신청이 접수되었습니다. 담당자가 순차 연락드립니다.'; })
+            .then(function(){ form.reset(); if(window.wcs){if(!wcs_add)var wcs_add={};wcs_add['wa']='s_3c3072383356';var _conv={};_conv.type='lead';wcs.trans(_conv);} if(status) status.textContent='상담신청이 접수되었습니다. 담당자가 순차 연락드립니다.'; })
             .catch(function(){ if(status) status.textContent='접수 중 오류가 발생했습니다. 1800-3688로 전화상담 부탁드립니다.'; })
             .finally(function(){ btn.disabled=false; });
         });
